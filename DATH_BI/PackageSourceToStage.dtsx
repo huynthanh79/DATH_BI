@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="91"
-  DTS:VersionGUID="{EA9BE174-7ED0-443D-8DC3-F74D039DA706}">
+  DTS:VersionBuild="92"
+  DTS:VersionGUID="{E29446BD-20D4-43F0-A274-F7209BCC655D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -2629,7 +2629,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[Ongoing_Outbreaks_PHU]</property>
+                  name="OpenRowset">[dbo].[Ongoing_Outbreaks_PHU]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -2719,7 +2719,7 @@
                       name="date" />
                     <externalMetadataColumn
                       refId="Package\Import data Ongoing_Outbrekas_PHU\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[phu_num]"
-                      dataType="i8"
+                      dataType="i4"
                       name="phu_num" />
                     <externalMetadataColumn
                       refId="Package\Import data Ongoing_Outbrekas_PHU\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[outbreak_group]"
@@ -3096,6 +3096,86 @@
           version="1">
           <components>
             <component
+              refId="Package\Import data PHU Source_Stage\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Import data PHU Source_Stage\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import data PHU Source_Stage\Derived Column.Inputs[Derived Column Input].Columns[PHU_ID]"
+                      cachedDataType="r8"
+                      cachedName="PHU_ID"
+                      lineageId="Package\Import data PHU Source_Stage\PHU Source.Outputs[Excel Source Output].Columns[PHU_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Import data PHU Source_Stage\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Output].Columns[PHU_ID_DTI4]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Output].Columns[PHU_ID_DTI4]"
+                      name="PHU_ID_DTI4"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)#{Package\Import data PHU Source_Stage\PHU Source.Outputs[Excel Source Output].Columns[PHU_ID]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)PHU_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Import data PHU Source_Stage\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Import data PHU Source_Stage\PHU Source"
               componentClassID="Microsoft.ExcelSource"
               contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
@@ -3407,12 +3487,6 @@
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Import data PHU Source_Stage\PHU Stage.Inputs[OLE DB Destination Input].Columns[PHU_ID]"
-                      cachedDataType="r8"
-                      cachedName="PHU_ID"
-                      externalMetadataColumnId="Package\Import data PHU Source_Stage\PHU Stage.Inputs[OLE DB Destination Input].ExternalColumns[PHU_ID]"
-                      lineageId="Package\Import data PHU Source_Stage\PHU Source.Outputs[Excel Source Output].Columns[PHU_ID]" />
-                    <inputColumn
                       refId="Package\Import data PHU Source_Stage\PHU Stage.Inputs[OLE DB Destination Input].Columns[Reporting_PHU]"
                       cachedDataType="wstr"
                       cachedLength="255"
@@ -3433,6 +3507,12 @@
                       cachedName="Reporting_PHU_City"
                       externalMetadataColumnId="Package\Import data PHU Source_Stage\PHU Stage.Inputs[OLE DB Destination Input].ExternalColumns[Reporting_PHU_City]"
                       lineageId="Package\Import data PHU Source_Stage\PHU Source.Outputs[Excel Source Output].Columns[Reporting_PHU_City]" />
+                    <inputColumn
+                      refId="Package\Import data PHU Source_Stage\PHU Stage.Inputs[OLE DB Destination Input].Columns[PHU_ID_DTI4]"
+                      cachedDataType="i4"
+                      cachedName="PHU_ID_DTI4"
+                      externalMetadataColumnId="Package\Import data PHU Source_Stage\PHU Stage.Inputs[OLE DB Destination Input].ExternalColumns[PHU_ID]"
+                      lineageId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Output].Columns[PHU_ID_DTI4]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3486,8 +3566,13 @@
           </components>
           <paths>
             <path
-              refId="Package\Import data PHU Source_Stage.Paths[Excel Source Output]"
+              refId="Package\Import data PHU Source_Stage.Paths[Derived Column Output]"
               endId="Package\Import data PHU Source_Stage\PHU Stage.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Import data PHU Source_Stage\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Import data PHU Source_Stage.Paths[Excel Source Output]"
+              endId="Package\Import data PHU Source_Stage\Derived Column.Inputs[Derived Column Input]"
               name="Excel Source Output"
               startId="Package\Import data PHU Source_Stage\PHU Source.Outputs[Excel Source Output]" />
           </paths>
@@ -3580,7 +3665,7 @@
                     </outputColumn>
                     <outputColumn
                       refId="Package\Import data Vaccines By Age PHU_Stage\Derived Column.Outputs[Derived Column Output].Columns[[PHU ID]]"
-                      dataType="i8"
+                      dataType="i4"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       lineageId="Package\Import data Vaccines By Age PHU_Stage\Derived Column.Outputs[Derived Column Output].Columns[[PHU ID]]"
@@ -3591,13 +3676,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_I8)#{Package\Import data Vaccines By Age PHU_Stage\Excel Source.Outputs[Excel Source Output].Columns[PHU ID]}</property>
+                          name="Expression">(DT_I4)#{Package\Import data Vaccines By Age PHU_Stage\Excel Source.Outputs[Excel Source Output].Columns[PHU ID]}</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(DT_I8)[PHU ID]</property>
+                          name="FriendlyExpression">(DT_I4)[PHU ID]</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -3906,7 +3991,7 @@
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[Vaccines_By_Age_PHU]</property>
+                  name="OpenRowset">[dbo].[Vaccines_By_Age_PHU]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -4001,7 +4086,7 @@
                       lineageId="Package\Import data Vaccines By Age PHU_Stage\Derived Column.Outputs[Derived Column Output].Columns[[third_dose_cumulative]]" />
                     <inputColumn
                       refId="Package\Import data Vaccines By Age PHU_Stage\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[[PHU ID]]"
-                      cachedDataType="i8"
+                      cachedDataType="i4"
                       cachedName="[PHU ID]"
                       externalMetadataColumnId="Package\Import data Vaccines By Age PHU_Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PHU ID]"
                       lineageId="Package\Import data Vaccines By Age PHU_Stage\Derived Column.Outputs[Derived Column Output].Columns[[PHU ID]]" />
@@ -4014,7 +4099,7 @@
                       name="Date" />
                     <externalMetadataColumn
                       refId="Package\Import data Vaccines By Age PHU_Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PHU ID]"
-                      dataType="i8"
+                      dataType="i4"
                       name="PHU ID" />
                     <externalMetadataColumn
                       refId="Package\Import data Vaccines By Age PHU_Stage\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Agegroup]"
@@ -5808,7 +5893,7 @@ FROM            Case_Report</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate table Ongoing_Outbreaks_PHU"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5825,7 +5910,7 @@ FROM            Case_Report</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate table PHU_Group_Stage"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="4">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5842,7 +5927,7 @@ FROM            Case_Report</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate table PHU_Stage"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="4">
+      DTS:ThreadHint="5">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5859,7 +5944,7 @@ FROM            Case_Report</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate table Vaccines_By_Age_PHU_Stage"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="5">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -6151,7 +6236,7 @@ FROM            Case_Report</property>
     design-time-name="Package\Import data Case Detail_Stage">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="171,42"
           Id="Package\Import data Case Detail_Stage\OLE DB Destination"
@@ -6187,9 +6272,7 @@ FROM            Case_Report</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6211,9 +6294,7 @@ FROM            Case_Report</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6235,9 +6316,7 @@ FROM            Case_Report</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6334,7 +6413,7 @@ FROM            Case_Report</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Import data Case Report Source_Stage\OLE DB Destination">
+    design-time-name="Package\Import data Case Report Source_Stage\Excel Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6347,7 +6426,7 @@ FROM            Case_Report</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Import data Case Report Source_Stage\Excel Source">
+    design-time-name="Package\Import data Case Report Source_Stage\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -6363,7 +6442,7 @@ FROM            Case_Report</property>
     design-time-name="Package\Import data Ongoing_Outbrekas_PHU">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="139,42"
           Id="Package\Import data Ongoing_Outbrekas_PHU\Excel Source"
@@ -6395,9 +6474,7 @@ FROM            Case_Report</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6419,9 +6496,7 @@ FROM            Case_Report</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6523,37 +6598,61 @@ FROM            Case_Report</property>
     design-time-name="Package\Import data PHU Source_Stage">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="129,42"
           Id="Package\Import data PHU Source_Stage\PHU Stage"
-          TopLeft="142,182" />
+          TopLeft="142,212" />
         <NodeLayout
           Size="134,42"
           Id="Package\Import data PHU Source_Stage\PHU Source"
           TopLeft="147,46" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Import data PHU Source_Stage\Derived Column"
+          TopLeft="136,121" />
         <EdgeLayout
           Id="Package\Import data PHU Source_Stage.Paths[Excel Source Output]"
-          TopLeft="210.25,88">
+          TopLeft="213.5,88">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,94"
+              EndConnector="0,33"
               Start="0,0"
-              End="0,86.5">
+              End="0,25.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,86.5" />
+                    End="0,25.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data PHU Source_Stage.Paths[Derived Column Output]"
+          TopLeft="209.75,163">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -6589,7 +6688,7 @@ FROM            Case_Report</property>
     design-time-name="Package\Import data Vaccines By Age PHU_Stage">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="171,42"
           Id="Package\Import data Vaccines By Age PHU_Stage\OLE DB Destination"
@@ -6621,9 +6720,7 @@ FROM            Case_Report</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6645,9 +6742,7 @@ FROM            Case_Report</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
