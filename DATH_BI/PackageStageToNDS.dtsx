@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="55"
-  DTS:VersionGUID="{C7B5F94E-24AC-4493-8C46-C6CCED328F46}">
+  DTS:VersionBuild="58"
+  DTS:VersionGUID="{AA28A001-2D1C-4206-AD48-CDF9A6934E4B}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -59,7 +59,26 @@
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
-  <DTS:Variables />
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{956D3735-4BE1-4F53-8404-39D483E2AA69}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ObjectPHU_GROUP">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
       DTS:refId="Package\Import data Day_NDS"
@@ -3415,6 +3434,16 @@ where [refTable].[PHU_GROUP_NAME] = ?</property>
                       lineageId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PHU_region]"
                       name="PHU_region"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      length="255"
+                      lineageId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE]"
+                      name="STATE"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -3433,6 +3462,11 @@ where [refTable].[PHU_GROUP_NAME] = ?</property>
                       dataType="wstr"
                       length="255"
                       name="PHU_region" />
+                    <externalMetadataColumn
+                      refId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      name="STATE" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -3458,6 +3492,12 @@ where [refTable].[PHU_GROUP_NAME] = ?</property>
                       length="255"
                       lineageId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PHU_region]"
                       name="PHU_region" />
+                    <outputColumn
+                      refId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE]"
+                      name="STATE" />
                     <outputColumn
                       refId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -3487,6 +3527,455 @@ where [refTable].[PHU_GROUP_NAME] = ?</property>
               endId="Package\Import data PHU_City_NDS\Lookup.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Import data PHU_City_NDS\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import data PHU_GROUP_NDS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{84AFA8C0-A948-4989-95D9-738E34264898}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import data PHU_GROUP_NDS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Import data PHU_Group_NDS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[PHU_GROUP]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].Columns[PHU_Group]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PHU_Group"
+                      externalMetadataColumnId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].ExternalColumns[PHU_GROUP_NAME]"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[PHU_Group]" />
+                    <inputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].Columns[STATE_ID]"
+                      cachedDataType="i4"
+                      cachedName="STATE_ID"
+                      externalMetadataColumnId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].ExternalColumns[STATE_ID]"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Match Output].Columns[STATE_ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].ExternalColumns[PHU_GROUP_ID]"
+                      dataType="i4"
+                      name="PHU_GROUP_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].ExternalColumns[PHU_GROUP_NAME]"
+                      dataType="wstr"
+                      length="255"
+                      name="PHU_GROUP_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].ExternalColumns[STATE_ID]"
+                      dataType="i4"
+                      name="STATE_ID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Load data PHU_Group_Stage"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT PHU_Group, STATE
+FROM            PHU_Group</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Stage_Covid19]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Stage_Covid19]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[PHU_Group]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].ExternalColumns[PHU_Group]"
+                      length="255"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[PHU_Group]"
+                      name="PHU_Group"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[STATE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      length="255"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[STATE]"
+                      name="STATE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].ExternalColumns[PHU_Group]"
+                      dataType="wstr"
+                      length="255"
+                      name="PHU_Group" />
+                    <externalMetadataColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      name="STATE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[PHU_Group]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[PHU_Group]"
+                      name="PHU_Group" />
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[STATE]"
+                      name="STATE" />
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import data PHU_GROUP_NDS\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[STATE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[STATE]) [refTable]
+where [refTable].[STATE_NAME] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="STATE_ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="STATE_NAME" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[STATE]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import data PHU_GROUP_NDS\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import data PHU_GROUP_NDS\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Lookup.Inputs[Lookup Input].Columns[STATE]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="STATE"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[STATE]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">STATE_NAME</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Import data PHU_GROUP_NDS\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Match Output].Columns[STATE_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Match Output].Columns[STATE_ID]"
+                      name="STATE_ID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">STATE_ID</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Import data PHU_GROUP_NDS\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Import data PHU_GROUP_NDS\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import data PHU_GROUP_NDS.Paths[Lookup Match Output]"
+              endId="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\Import data PHU_GROUP_NDS\Lookup.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Import data PHU_GROUP_NDS.Paths[OLE DB Source Output]"
+              endId="Package\Import data PHU_GROUP_NDS\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -4059,6 +4548,16 @@ where [refTable].[PHU_CITY_NAME] = ? and [refTable].[PHU_GROUP_ID] = ?</property
                       lineageId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[PHU_region]"
                       name="PHU_region"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      length="255"
+                      lineageId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE]"
+                      name="STATE"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4077,6 +4576,11 @@ where [refTable].[PHU_CITY_NAME] = ? and [refTable].[PHU_GROUP_ID] = ?</property
                       dataType="wstr"
                       length="255"
                       name="PHU_region" />
+                    <externalMetadataColumn
+                      refId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      name="STATE" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -4102,6 +4606,12 @@ where [refTable].[PHU_CITY_NAME] = ? and [refTable].[PHU_GROUP_ID] = ?</property
                       length="255"
                       lineageId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PHU_region]"
                       name="PHU_region" />
+                    <outputColumn
+                      refId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE]"
+                      name="STATE" />
                     <outputColumn
                       refId="Package\Import data PHU_Region_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -4743,6 +5253,260 @@ FROM            (SELECT        date_reported
               endId="Package\Import data Quarter_NDS\Lookup.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Import data Quarter_NDS\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import data STATE_NDS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{418898ED-EDF1-40F0-85B1-A88735CDA5B4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import data STATE_NDS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import data STATE_NDS\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STATE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import data STATE_NDS\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import data STATE_NDS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[province]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="province"
+                      externalMetadataColumnId="Package\Import data STATE_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_NAME]"
+                      lineageId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[province]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_ID]"
+                      dataType="i4"
+                      name="STATE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_NAME]"
+                      dataType="wstr"
+                      length="255"
+                      name="STATE_NAME" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import data STATE_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import data STATE_NDS\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data STATE_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data STATE_NDS\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import data STATE_NDS\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT province
+FROM            Case_Detail</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import data STATE_NDS\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Stage_Covid19]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Stage_Covid19]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[province]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[province]"
+                      length="100"
+                      lineageId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Output].Columns[province]"
+                      name="province"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[province]"
+                      dataType="wstr"
+                      length="100"
+                      name="province" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[province]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[province]"
+                      name="province" />
+                    <outputColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import data STATE_NDS.Paths[OLE DB Source Output]"
+              endId="Package\Import data STATE_NDS\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Import data STATE_NDS\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -11900,260 +12664,6 @@ FROM            Case_Report</property>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\PHU_Group_Stage to PHU_Group_NDS"
-      DTS:CreationName="Microsoft.Pipeline"
-      DTS:Description="Data Flow Task"
-      DTS:DTSID="{84AFA8C0-A948-4989-95D9-738E34264898}"
-      DTS:ExecutableType="Microsoft.Pipeline"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="PHU_Group_Stage to PHU_Group_NDS"
-      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <pipeline
-          version="1">
-          <components>
-            <component
-              refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="Import data PHU_Group_NDS"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[PHU_GROUP]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">3</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
-                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].Columns[PHU_Group]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="PHU_Group"
-                      externalMetadataColumnId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].ExternalColumns[PHU_GROUP_NAME]"
-                      lineageId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[PHU_Group]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].ExternalColumns[PHU_GROUP_ID]"
-                      dataType="i4"
-                      name="PHU_GROUP_ID" />
-                    <externalMetadataColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input].ExternalColumns[PHU_GROUP_NAME]"
-                      dataType="wstr"
-                      length="255"
-                      name="PHU_GROUP_NAME" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage"
-              componentClassID="Microsoft.OLEDBSource"
-              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
-              description="OLE DB Source"
-              name="Load data PHU_Group_Stage"
-              usesDispositions="true"
-              version="7">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT PHU_Group
-FROM            PHU_Group</property>
-                <property
-                  dataType="System.String"
-                  description="The variable that contains the SQL command to be executed."
-                  name="SqlCommandVariable"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">2</property>
-                <property
-                  dataType="System.String"
-                  description="The mappings between the parameters in the SQL command and variables."
-                  name="ParameterMapping"></property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.Stage_Covid19]"
-                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.Stage_Covid19]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <outputs>
-                <output
-                  refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output]"
-                  name="OLE DB Source Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[PHU_Group]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].ExternalColumns[PHU_Group]"
-                      length="255"
-                      lineageId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].Columns[PHU_Group]"
-                      name="PHU_Group"
-                      truncationRowDisposition="FailComponent" />
-                  </outputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output].ExternalColumns[PHU_Group]"
-                      dataType="wstr"
-                      length="255"
-                      name="PHU_Group" />
-                  </externalMetadataColumns>
-                </output>
-                <output
-                  refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output]"
-                  isErrorOut="true"
-                  name="OLE DB Source Error Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[PHU_Group]"
-                      dataType="wstr"
-                      length="255"
-                      lineageId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[PHU_Group]"
-                      name="PHU_Group" />
-                    <outputColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-          </components>
-          <paths>
-            <path
-              refId="Package\PHU_Group_Stage to PHU_Group_NDS.Paths[OLE DB Source Output]"
-              endId="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS.Inputs[OLE DB Destination Input]"
-              name="OLE DB Source Output"
-              startId="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage.Outputs[OLE DB Source Output]" />
-          </paths>
-        </pipeline>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
       DTS:refId="Package\PHU_Stage to PHU_NDS"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
@@ -13171,7 +13681,7 @@ where PHU_ID = ?</property>
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
       DTS:DTSID="{39CFA60E-78CB-4E60-A4B9-93A1E69616B3}"
-      DTS:From="Package\PHU_Group_Stage to PHU_Group_NDS"
+      DTS:From="Package\Import data PHU_GROUP_NDS"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
       DTS:To="Package\Import data PHU_City_NDS" />
@@ -13199,6 +13709,14 @@ where PHU_ID = ?</property>
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 11"
       DTS:To="Package\Load data Case_Detail Stage to NDS" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 12]"
+      DTS:CreationName=""
+      DTS:DTSID="{18ABDC6B-4CF2-4C75-86ED-54D2F76D9CE3}"
+      DTS:From="Package\Import data STATE_NDS"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 12"
+      DTS:To="Package\Import data PHU_GROUP_NDS" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
       DTS:CreationName=""
@@ -13295,7 +13813,7 @@ where PHU_ID = ?</property>
         <NodeLayout
           Size="208,42"
           Id="Package\Import data PHU_City_NDS"
-          TopLeft="203,140" />
+          TopLeft="201,189" />
         <NodeLayout
           Size="223,42"
           Id="Package\Import data PHU_Region_NDS"
@@ -13321,27 +13839,27 @@ where PHU_ID = ?</property>
           Id="Package\Load data Case_Report Stage to NDS"
           TopLeft="565,583" />
         <NodeLayout
-          Size="263,42"
-          Id="Package\PHU_Group_Stage to PHU_Group_NDS"
-          TopLeft="183,34" />
+          Size="225,42"
+          Id="Package\Import data PHU_GROUP_NDS"
+          TopLeft="190,115" />
         <NodeLayout
           Size="194,42"
           Id="Package\PHU_Stage to PHU_NDS"
           TopLeft="210,386" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="310.75,76">
+          TopLeft="303.75,157">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,64"
+              EndConnector="0,32"
               Start="0,0"
-              End="0,56.5">
+              End="0,24.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,56.5" />
+                    End="0,24.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13352,18 +13870,18 @@ where PHU_ID = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="306.75,182">
+          TopLeft="305.75,231">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,88"
+              EndConnector="0,39"
               Start="0,0"
-              End="0,80.5">
+              End="0,31.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,80.5" />
+                    End="0,31.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13628,6 +14146,32 @@ where PHU_ID = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="195,42"
+          Id="Package\Import data STATE_NDS"
+          TopLeft="198,18" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 12]"
+          TopLeft="299,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -13637,49 +14181,29 @@ where PHU_ID = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171,42"
-          Id="Package\Import data Day_NDS\OLE DB Destination"
-          TopLeft="299,507" />
-        <NodeLayout
           Size="122,42"
-          Id="Package\Import data Day_NDS\Lookup 1"
-          TopLeft="322,224" />
-        <NodeLayout
-          Size="122,42"
-          Id="Package\Import data Day_NDS\Lookup 2"
-          TopLeft="322,312" />
+          Id="Package\Import data Day_NDS\Lookup 3"
+          TopLeft="320,408" />
         <NodeLayout
           Size="150,42"
           Id="Package\Import data Day_NDS\OLE DB Source"
           TopLeft="316,33" />
         <NodeLayout
+          Size="122,42"
+          Id="Package\Import data Day_NDS\Lookup 1"
+          TopLeft="322,224" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import data Day_NDS\OLE DB Destination"
+          TopLeft="299,507" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Import data Day_NDS\Lookup 2"
+          TopLeft="322,312" />
+        <NodeLayout
           Size="113,42"
           Id="Package\Import data Day_NDS\Lookup"
           TopLeft="332,128" />
-        <EdgeLayout
-          Id="Package\Import data Day_NDS.Paths[Lookup Match Output]"
-          TopLeft="385.75,170">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,54"
-              Start="0,0"
-              End="0,46.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,17.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
         <EdgeLayout
           Id="Package\Import data Day_NDS.Paths[OLE DB Source Output]"
           TopLeft="389.75,75">
@@ -13699,7 +14223,33 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data Day_NDS.Paths[Lookup Match Output2]"
+          TopLeft="382,354">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,17.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13726,13 +14276,9 @@ where PHU_ID = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="122,42"
-          Id="Package\Import data Day_NDS\Lookup 3"
-          TopLeft="320,408" />
         <EdgeLayout
-          Id="Package\Import data Day_NDS.Paths[Lookup Match Output2]"
-          TopLeft="382,354">
+          Id="Package\Import data Day_NDS.Paths[Lookup Match Output]"
+          TopLeft="385.75,170">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -13900,13 +14446,17 @@ where PHU_ID = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="171,42"
+          Id="Package\Import data Month_NDS\OLE DB Destination"
+          TopLeft="213,377" />
+        <NodeLayout
           Size="122,42"
           Id="Package\Import data Month_NDS\Lookup 1"
           TopLeft="242,210" />
         <NodeLayout
-          Size="171,42"
-          Id="Package\Import data Month_NDS\OLE DB Destination"
-          TopLeft="213,377" />
+          Size="122,42"
+          Id="Package\Import data Month_NDS\Lookup 2"
+          TopLeft="238,287" />
         <NodeLayout
           Size="113,42"
           Id="Package\Import data Month_NDS\Lookup"
@@ -13934,7 +14484,33 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data Month_NDS.Paths[Lookup Match Output1]"
+          TopLeft="301,252">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,35"
+              Start="0,0"
+              End="0,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,7.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -13958,34 +14534,6 @@ where PHU_ID = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-48.19138671875,14.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="122,42"
-          Id="Package\Import data Month_NDS\Lookup 2"
-          TopLeft="238,287" />
-        <EdgeLayout
-          Id="Package\Import data Month_NDS.Paths[Lookup Match Output1]"
-          TopLeft="301,252">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,35"
-              Start="0,0"
-              End="0,27.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,7.9453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14150,7 +14698,9 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14172,7 +14722,9 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14423,9 +14975,7 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14544,9 +15094,7 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14678,6 +15226,14 @@ where PHU_ID = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="122,42"
+          Id="Package\Import data Quarter_NDS\Lookup 1"
+          TopLeft="273,245" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Import data Quarter_NDS\OLE DB Source"
+          TopLeft="259,26" />
+        <NodeLayout
           Size="171,42"
           Id="Package\Import data Quarter_NDS\OLE DB Destination"
           TopLeft="254,337" />
@@ -14685,36 +15241,6 @@ where PHU_ID = ?</property>
           Size="113,42"
           Id="Package\Import data Quarter_NDS\Lookup"
           TopLeft="273,133" />
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Import data Quarter_NDS\OLE DB Source"
-          TopLeft="259,26" />
-        <EdgeLayout
-          Id="Package\Import data Quarter_NDS.Paths[OLE DB Source Output]"
-          TopLeft="331.75,68">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,65"
-              Start="0,0"
-              End="0,57.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,57.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="122,42"
-          Id="Package\Import data Quarter_NDS\Lookup 1"
-          TopLeft="273,245" />
         <EdgeLayout
           Id="Package\Import data Quarter_NDS.Paths[Lookup Match Output]"
           TopLeft="331.75,175">
@@ -14760,6 +15286,30 @@ where PHU_ID = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-45.86638671875,15.4453125,91.7327734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data Quarter_NDS.Paths[OLE DB Source Output]"
+          TopLeft="331.75,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14869,7 +15419,9 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -14931,7 +15483,7 @@ where PHU_ID = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -14941,7 +15493,7 @@ where PHU_ID = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -14984,7 +15536,9 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16173,39 +16727,65 @@ where PHU_ID = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\PHU_Group_Stage to PHU_Group_NDS">
+    design-time-name="Package\Import data PHU_GROUP_NDS">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="219,42"
-          Id="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS"
-          TopLeft="207,146" />
+          Id="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS"
+          TopLeft="209,212" />
         <NodeLayout
           Size="216,42"
-          Id="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage"
+          Id="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage"
           TopLeft="214,19" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Import data PHU_GROUP_NDS\Lookup"
+          TopLeft="260,123" />
         <EdgeLayout
-          Id="Package\PHU_Group_Stage to PHU_Group_NDS.Paths[OLE DB Source Output]"
+          Id="Package\Import data PHU_GROUP_NDS.Paths[OLE DB Source Output]"
           TopLeft="319.25,61">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,85"
+              EndConnector="0,62"
               Start="0,0"
-              End="0,77.5">
+              End="0,54.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,77.5" />
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data PHU_GROUP_NDS.Paths[Lookup Match Output]"
+          TopLeft="317.5,165">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
+              BoundingBox="-48.19138671875,13.9453125,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -16213,7 +16793,7 @@ where PHU_ID = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\PHU_Group_Stage to PHU_Group_NDS\Import data PHU_Group_NDS">
+    design-time-name="Package\Import data PHU_GROUP_NDS\Import data PHU_Group_NDS">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -16226,7 +16806,7 @@ where PHU_ID = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\PHU_Group_Stage to PHU_Group_NDS\Load data PHU_Group_Stage">
+    design-time-name="Package\Import data PHU_GROUP_NDS\Load data PHU_Group_Stage">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -16239,10 +16819,6 @@ where PHU_ID = ?</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="150,42"
-          Id="Package\PHU_Stage to PHU_NDS\OLE DB Source"
-          TopLeft="251,47" />
-        <NodeLayout
           Size="152,42"
           Id="Package\PHU_Stage to PHU_NDS\Fuzzy Lookup 1"
           TopLeft="253,145" />
@@ -16250,6 +16826,18 @@ where PHU_ID = ?</property>
           Size="171,42"
           Id="Package\PHU_Stage to PHU_NDS\OLE DB Destination"
           TopLeft="432,330" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\PHU_Stage to PHU_NDS\OLE DB Command"
+          TopLeft="71,335" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\PHU_Stage to PHU_NDS\Lookup"
+          TopLeft="276,232" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\PHU_Stage to PHU_NDS\OLE DB Source"
+          TopLeft="251,47" />
         <EdgeLayout
           Id="Package\PHU_Stage to PHU_NDS.Paths[OLE DB Source Output]"
           TopLeft="327.5,89">
@@ -16269,33 +16857,45 @@ where PHU_ID = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="113,42"
-          Id="Package\PHU_Stage to PHU_NDS\Lookup"
-          TopLeft="276,232" />
         <EdgeLayout
-          Id="Package\PHU_Stage to PHU_NDS.Paths[Fuzzy Lookup Output]"
-          TopLeft="330.75,187">
+          Id="Package\PHU_Stage to PHU_NDS.Paths[Lookup Match Output]"
+          TopLeft="315,274">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45"
+              EndConnector="-161,61"
               Start="0,0"
-              End="0,37.5">
+              End="-161,53.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5" />
+                    End="0,20.9109947643979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.9109947643979"
+                    Point2="0,24.9109947643979"
+                    Point3="-4,24.9109947643979" />
+                  <mssgle:LineSegment
+                    End="-157,24.9109947643979" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-157,24.9109947643979"
+                    Point2="-161,24.9109947643979"
+                    Point3="-161,28.9109947643979" />
+                  <mssgle:LineSegment
+                    End="-161,53.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-128.69138671875,29.9109947643979,96.3827734375,11.609375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -16334,43 +16934,27 @@ where PHU_ID = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="166,42"
-          Id="Package\PHU_Stage to PHU_NDS\OLE DB Command"
-          TopLeft="71,335" />
         <EdgeLayout
-          Id="Package\PHU_Stage to PHU_NDS.Paths[Lookup Match Output]"
-          TopLeft="315,274">
+          Id="Package\PHU_Stage to PHU_NDS.Paths[Fuzzy Lookup Output]"
+          TopLeft="330.75,187">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-161,61"
+              EndConnector="0,45"
               Start="0,0"
-              End="-161,53.5">
+              End="0,37.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,20.9109947643979" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,20.9109947643979"
-                    Point2="0,24.9109947643979"
-                    Point3="-4,24.9109947643979" />
-                  <mssgle:LineSegment
-                    End="-157,24.9109947643979" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-157,24.9109947643979"
-                    Point2="-161,24.9109947643979"
-                    Point3="-161,28.9109947643979" />
-                  <mssgle:LineSegment
-                    End="-161,53.5" />
+                    End="0,37.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-128.69138671875,29.9109947643979,96.3827734375,11.609375"
+              BoundingBox="0,0,0,0"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -16433,6 +17017,88 @@ where PHU_ID = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import data STATE_NDS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Import data STATE_NDS\OLE DB Source"
+          TopLeft="293,12" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import data STATE_NDS\OLE DB Destination"
+          TopLeft="280,166" />
+        <EdgeLayout
+          Id="Package\Import data STATE_NDS.Paths[OLE DB Source Output]"
+          TopLeft="366.75,54">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,112"
+              Start="0,0"
+              End="0,104.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,104.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data STATE_NDS\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data STATE_NDS\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data PHU_GROUP_NDS\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[STATE]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>

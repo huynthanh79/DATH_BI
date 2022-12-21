@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{11CBB817-7D0A-421C-9172-3958EEB1DE1C}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{C70ADE1C-12C6-48DA-8EA7-A0E3720940DE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -4539,6 +4539,12 @@ where [refTable].[PHU_GROUP_ID] = ?</property>
                       cachedName="PHU_GROUP_NAME"
                       externalMetadataColumnId="Package\Import PHU_Group to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PHU_GROUP_NAME]"
                       lineageId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[PHU_GROUP_NAME]" />
+                    <inputColumn
+                      refId="Package\Import PHU_Group to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[STATE_ID]"
+                      cachedDataType="i4"
+                      cachedName="STATE_ID"
+                      externalMetadataColumnId="Package\Import PHU_Group to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_ID]"
+                      lineageId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_ID]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4551,6 +4557,10 @@ where [refTable].[PHU_GROUP_ID] = ?</property>
                       dataType="wstr"
                       length="255"
                       name="PHU_GROUP_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import PHU_Group to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_ID]"
+                      dataType="i4"
+                      name="STATE_ID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -4659,6 +4669,15 @@ where [refTable].[PHU_GROUP_ID] = ?</property>
                       lineageId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[PHU_GROUP_NAME]"
                       name="PHU_GROUP_NAME"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE_ID]"
+                      lineageId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_ID]"
+                      name="STATE_ID"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -4671,6 +4690,10 @@ where [refTable].[PHU_GROUP_ID] = ?</property>
                       dataType="wstr"
                       length="255"
                       name="PHU_GROUP_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE_ID]"
+                      dataType="i4"
+                      name="STATE_ID" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -4689,6 +4712,11 @@ where [refTable].[PHU_GROUP_ID] = ?</property>
                       length="255"
                       lineageId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PHU_GROUP_NAME]"
                       name="PHU_GROUP_NAME" />
+                    <outputColumn
+                      refId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE_ID]"
+                      dataType="i4"
+                      lineageId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE_ID]"
+                      name="STATE_ID" />
                     <outputColumn
                       refId="Package\Import PHU_Group to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -5165,6 +5193,283 @@ where [refTable].[QUARTER_ID] = ?</property>
               endId="Package\Import Quarter to Dimension\Lookup.Inputs[Lookup Input]"
               name="OLE DB Source Output"
               startId="Package\Import Quarter to Dimension\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Import State to Dimension"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{29E7890B-EAFB-4D82-8184-91D0CEA52488}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Import State to Dimension"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Import State to Dimension\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DIM_STATE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import State to Dimension\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.DDS_Covid19]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.DDS_Covid19]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[STATE_ID]"
+                      cachedDataType="i4"
+                      cachedName="STATE_ID"
+                      externalMetadataColumnId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_ID]"
+                      lineageId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_ID]" />
+                    <inputColumn
+                      refId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[STATE_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="STATE_NAME"
+                      externalMetadataColumnId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_NAME]"
+                      lineageId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_NAME]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_ID]"
+                      dataType="i4"
+                      name="STATE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[STATE_NAME]"
+                      dataType="wstr"
+                      length="255"
+                      name="STATE_NAME" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Import State to Dimension\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import State to Dimension\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import State to Dimension\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import State to Dimension\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import State to Dimension\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Import State to Dimension\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STATE]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Import State to Dimension\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
+                  connectionManagerRefId="Package.ConnectionManagers[.\SQLEXPRESS.NDS_Covid19]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_ID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE_ID]"
+                      lineageId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_ID]"
+                      name="STATE_ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE_NAME]"
+                      length="255"
+                      lineageId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].Columns[STATE_NAME]"
+                      name="STATE_NAME"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE_ID]"
+                      dataType="i4"
+                      name="STATE_ID" />
+                    <externalMetadataColumn
+                      refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STATE_NAME]"
+                      dataType="wstr"
+                      length="255"
+                      name="STATE_NAME" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE_ID]"
+                      dataType="i4"
+                      lineageId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE_ID]"
+                      name="STATE_ID" />
+                    <outputColumn
+                      refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE_NAME]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STATE_NAME]"
+                      name="STATE_NAME" />
+                    <outputColumn
+                      refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Import State to Dimension.Paths[OLE DB Source Output]"
+              endId="Package\Import State to Dimension\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Import State to Dimension\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -5648,7 +5953,7 @@ where [refTable].[YEAR_ID] = ?</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Update Severe_Point Gender High"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5665,7 +5970,7 @@ where [refTable].[YEAR_ID] = ?</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Update Severe_Point Gender Low"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5682,7 +5987,7 @@ where [refTable].[YEAR_ID] = ?</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Update Severe_Point Gender Mediu,"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5699,7 +6004,7 @@ where [refTable].[YEAR_ID] = ?</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Update Severe_Point Outcome High"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5716,7 +6021,7 @@ where [refTable].[YEAR_ID] = ?</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Update Severe_Point Outcome Low"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5733,7 +6038,7 @@ where [refTable].[YEAR_ID] = ?</property>
       DTS:LocaleID="-1"
       DTS:ObjectName="Update Severe_Point Outcome Medium"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -5848,6 +6153,14 @@ where [refTable].[YEAR_ID] = ?</property>
       DTS:ObjectName="Constraint 2"
       DTS:To="Package\Import Day to Dimension" />
     <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 20]"
+      DTS:CreationName=""
+      DTS:DTSID="{A00CD68F-DB51-47E5-8E47-51E36F757F65}"
+      DTS:From="Package\Import State to Dimension"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 20"
+      DTS:To="Package\Import PHU_Group to Dimension" />
+    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
       DTS:CreationName=""
       DTS:DTSID="{3C47761E-09B3-454A-97F5-12DDFC980207}"
@@ -5917,9 +6230,29 @@ where [refTable].[YEAR_ID] = ?</property>
       <GraphLayout
         Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
+          Size="215,42"
+          Id="Package\Import data Dim_Age_Group"
+          TopLeft="669,36" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\Import data Dim_Gender"
+          TopLeft="941,42" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\Import data Dim_Outcome"
+          TopLeft="1213,45" />
+        <NodeLayout
+          Size="222,42"
+          Id="Package\Import data Dim_Severe_Rate"
+          TopLeft="671,654" />
+        <NodeLayout
+          Size="246,42"
+          Id="Package\Import data Fact_Casualty_Statistic"
+          TopLeft="664,547" />
+        <NodeLayout
           Size="198,42"
           Id="Package\Import Day to Dimension"
-          TopLeft="129,387" />
+          TopLeft="132,374" />
         <NodeLayout
           Size="209,42"
           Id="Package\Import Month to Dimension"
@@ -5927,15 +6260,15 @@ where [refTable].[YEAR_ID] = ?</property>
         <NodeLayout
           Size="200,42"
           Id="Package\Import PHU to Dimension"
-          TopLeft="409,246" />
+          TopLeft="394,370" />
         <NodeLayout
           Size="223,42"
           Id="Package\Import PHU_City to Dimension"
-          TopLeft="403,153" />
+          TopLeft="389,248" />
         <NodeLayout
           Size="234,42"
           Id="Package\Import PHU_Group to Dimension"
-          TopLeft="401,33" />
+          TopLeft="386,157" />
         <NodeLayout
           Size="215,42"
           Id="Package\Import Quarter to Dimension"
@@ -5944,6 +6277,42 @@ where [refTable].[YEAR_ID] = ?</property>
           Size="201,42"
           Id="Package\Import Year to Dimension"
           TopLeft="134,28" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\Update Severe_Point Age High"
+          TopLeft="668,378" />
+        <NodeLayout
+          Size="221,42"
+          Id="Package\Update Severe_Point Age Low"
+          TopLeft="665,154" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\Update Severe_Point Age Medium"
+          TopLeft="659,249" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\Update Severe_Point Gender High"
+          TopLeft="931,378" />
+        <NodeLayout
+          Size="237,42"
+          Id="Package\Update Severe_Point Gender Low"
+          TopLeft="921,153" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\Update Severe_Point Gender Mediu,"
+          TopLeft="919,249" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\Update Severe_Point Outcome High"
+          TopLeft="1189,378" />
+        <NodeLayout
+          Size="245,42"
+          Id="Package\Update Severe_Point Outcome Low"
+          TopLeft="1189,155" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\Update Severe_Point Outcome Medium"
+          TopLeft="1180,253" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="237,70">
@@ -5989,234 +6358,6 @@ where [refTable].[YEAR_ID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 2]"
-          TopLeft="231.25,288">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,99"
-              Start="0,0"
-              End="0,91.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,91.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 3]"
-          TopLeft="516.25,75">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,78"
-              Start="0,0"
-              End="0,70.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,70.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="511.75,195">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,51"
-              Start="0,0"
-              End="0,43.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="197,42"
-          Id="Package\Import data Dim_Gender"
-          TopLeft="941,42" />
-        <NodeLayout
-          Size="215,42"
-          Id="Package\Import data Dim_Age_Group"
-          TopLeft="669,36" />
-        <NodeLayout
-          Size="222,42"
-          Id="Package\Import data Dim_Severe_Rate"
-          TopLeft="671,654" />
-        <NodeLayout
-          Size="246,42"
-          Id="Package\Import data Fact_Casualty_Statistic"
-          TopLeft="664,547" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 5]"
-          TopLeft="228,429">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="479.666666666667,118"
-              Start="0,0"
-              End="479.666666666667,110.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,83.084" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,83.084"
-                    Point2="0,87.084"
-                    Point3="4,87.084" />
-                  <mssgle:LineSegment
-                    End="475.666666666667,87.084" />
-                  <mssgle:CubicBezierSegment
-                    Point1="475.666666666667,87.084"
-                    Point2="479.666666666667,87.084"
-                    Point3="479.666666666667,91.084" />
-                  <mssgle:LineSegment
-                    End="479.666666666667,110.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 7]"
-          TopLeft="784.5,654">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,-65"
-              Start="0,0"
-              End="0,-57.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-57.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 8]"
-          TopLeft="509,288">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="238.333333333333,259"
-              Start="0,0"
-              End="238.333333333333,251.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,150.395799676898" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,150.395799676898"
-                    Point2="0,154.395799676898"
-                    Point3="4,154.395799676898" />
-                  <mssgle:LineSegment
-                    End="234.333333333333,154.395799676898" />
-                  <mssgle:CubicBezierSegment
-                    Point1="234.333333333333,154.395799676898"
-                    Point2="238.333333333333,154.395799676898"
-                    Point3="238.333333333333,158.395799676898" />
-                  <mssgle:LineSegment
-                    End="238.333333333333,251.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="221,42"
-          Id="Package\Update Severe_Point Age Low"
-          TopLeft="665,154" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 6]"
-          TopLeft="776,78">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,76"
-              Start="0,0"
-              End="0,68.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,68.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="239,42"
-          Id="Package\Update Severe_Point Age Medium"
-          TopLeft="659,249" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint 9]"
-          TopLeft="777,196">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,53"
-              Start="0,0"
-              End="0,45.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="223,42"
-          Id="Package\Update Severe_Point Age High"
-          TopLeft="668,378" />
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 10]"
           TopLeft="779,291">
           <EdgeLayout.Curve>
@@ -6260,10 +6401,6 @@ where [refTable].[YEAR_ID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="237,42"
-          Id="Package\Update Severe_Point Gender Low"
-          TopLeft="921,153" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 12]"
           TopLeft="1039.5,84">
@@ -6286,10 +6423,6 @@ where [refTable].[YEAR_ID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="249,42"
-          Id="Package\Update Severe_Point Gender Mediu,"
-          TopLeft="919,249" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 13]"
           TopLeft="1041.5,195">
@@ -6312,10 +6445,6 @@ where [refTable].[YEAR_ID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="239,42"
-          Id="Package\Update Severe_Point Gender High"
-          TopLeft="931,378" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 14]"
           TopLeft="1047,291">
@@ -6372,14 +6501,6 @@ where [refTable].[YEAR_ID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="205,42"
-          Id="Package\Import data Dim_Outcome"
-          TopLeft="1213,45" />
-        <NodeLayout
-          Size="245,42"
-          Id="Package\Update Severe_Point Outcome Low"
-          TopLeft="1189,155" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 16]"
           TopLeft="1313.5,87">
@@ -6402,10 +6523,6 @@ where [refTable].[YEAR_ID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="263,42"
-          Id="Package\Update Severe_Point Outcome Medium"
-          TopLeft="1180,253" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 17]"
           TopLeft="1311.5,197">
@@ -6428,10 +6545,6 @@ where [refTable].[YEAR_ID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="248,42"
-          Id="Package\Update Severe_Point Outcome High"
-          TopLeft="1189,378" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 18]"
           TopLeft="1312.25,295">
@@ -6488,9 +6601,746 @@ where [refTable].[YEAR_ID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="232.75,288">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,86"
+              Start="0,0"
+              End="0,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="501.75,199">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="497.25,290">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,80"
+              Start="0,0"
+              End="0,72.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,72.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="231,416">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="476.666666666667,131"
+              Start="0,0"
+              End="476.666666666667,123.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,92.678" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,92.678"
+                    Point2="0,96.678"
+                    Point3="4,96.678" />
+                  <mssgle:LineSegment
+                    End="472.666666666667,96.678" />
+                  <mssgle:CubicBezierSegment
+                    Point1="472.666666666667,96.678"
+                    Point2="476.666666666667,96.678"
+                    Point3="476.666666666667,100.678" />
+                  <mssgle:LineSegment
+                    End="476.666666666667,123.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="776,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="784.5,654">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-65"
+              Start="0,0"
+              End="0,-57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="494,412">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="253.333333333333,135"
+              Start="0,0"
+              End="253.333333333333,127.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.4765751211632" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,76.4765751211632"
+                    Point2="0,80.4765751211632"
+                    Point3="4,80.4765751211632" />
+                  <mssgle:LineSegment
+                    End="249.333333333333,80.4765751211632" />
+                  <mssgle:CubicBezierSegment
+                    Point1="249.333333333333,80.4765751211632"
+                    Point2="253.333333333333,80.4765751211632"
+                    Point3="253.333333333333,84.4765751211632" />
+                  <mssgle:LineSegment
+                    End="253.333333333333,127.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="777,196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="204,42"
+          Id="Package\Import State to Dimension"
+          TopLeft="407,31" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 20]"
+          TopLeft="506,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84"
+              Start="0,0"
+              End="0,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
+  <TaskHost
+    design-time-name="Package\Import data Dim_Age_Group">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Import data Dim_Age_Group\OLE DB Source"
+          TopLeft="268,36" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import data Dim_Age_Group\OLE DB Destination"
+          TopLeft="263,151" />
+        <EdgeLayout
+          Id="Package\Import data Dim_Age_Group.Paths[OLE DB Source Output]"
+          TopLeft="345.75,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Dim_Age_Group\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Dim_Age_Group\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import data Dim_Gender">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Import data Dim_Gender\OLE DB Source"
+          TopLeft="276,17" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import data Dim_Gender\OLE DB Destination"
+          TopLeft="271,134" />
+        <EdgeLayout
+          Id="Package\Import data Dim_Gender.Paths[OLE DB Source Output]"
+          TopLeft="353.75,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,75"
+              Start="0,0"
+              End="0,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Dim_Gender\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Dim_Gender\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import data Dim_Outcome">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Import data Dim_Outcome\OLE DB Source"
+          TopLeft="354,32" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import data Dim_Outcome\OLE DB Destination"
+          TopLeft="341,162" />
+        <EdgeLayout
+          Id="Package\Import data Dim_Outcome.Paths[OLE DB Source Output]"
+          TopLeft="427.75,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88"
+              Start="0,0"
+              End="0,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Dim_Outcome\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Dim_Outcome\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import data Dim_Severe_Rate">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Import data Dim_Severe_Rate\Flat File Source"
+          TopLeft="284,36" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Import data Dim_Severe_Rate\Derived Column"
+          TopLeft="275,111" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import data Dim_Severe_Rate\OLE DB Destination"
+          TopLeft="267,197" />
+        <EdgeLayout
+          Id="Package\Import data Dim_Severe_Rate.Paths[Flat File Source Output]"
+          TopLeft="355.75,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data Dim_Severe_Rate.Paths[Derived Column Output]"
+          TopLeft="352.25,153">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,44"
+              Start="0,0"
+              End="0,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Dim_Severe_Rate\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Import data Fact_Casualty_Statistic">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Import data Fact_Casualty_Statistic\Lookup"
+          TopLeft="340,122" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Import data Fact_Casualty_Statistic\OLE DB Destination"
+          TopLeft="313,483" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Import data Fact_Casualty_Statistic\Lookup 1"
+          TopLeft="331,218" />
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Import data Fact_Casualty_Statistic\OLE DB Source"
+          TopLeft="323,27" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Import data Fact_Casualty_Statistic\Derived Column"
+          TopLeft="314,390" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\Import data Fact_Casualty_Statistic\Lookup 2"
+          TopLeft="330,305" />
+        <EdgeLayout
+          Id="Package\Import data Fact_Casualty_Statistic.Paths[OLE DB Source Output]"
+          TopLeft="397.25,69">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data Fact_Casualty_Statistic.Paths[Lookup Match Output2]"
+          TopLeft="391,347">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,11.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data Fact_Casualty_Statistic.Paths[Lookup Match Output1]"
+          TopLeft="391.5,260">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,12.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data Fact_Casualty_Statistic.Paths[Lookup Match Output]"
+          TopLeft="394.25,164">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,17.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Import data Fact_Casualty_Statistic.Paths[Derived Column Output]"
+          TopLeft="394.75,432">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Fact_Casualty_Statistic\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_AGE_GROUP]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Fact_Casualty_Statistic\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Fact_Casualty_Statistic\Lookup 1">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_GENDER]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Fact_Casualty_Statistic\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Import data Fact_Casualty_Statistic\Lookup 2">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_OUTCOME]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\Import Day to Dimension">
     <LayoutInfo>
@@ -6527,7 +7377,9 @@ where [refTable].[YEAR_ID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6589,7 +7441,7 @@ where [refTable].[YEAR_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -6642,7 +7494,9 @@ where [refTable].[YEAR_ID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6785,7 +7639,9 @@ where [refTable].[YEAR_ID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -6857,7 +7713,7 @@ where [refTable].[YEAR_ID] = ?</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
@@ -6867,7 +7723,7 @@ where [refTable].[YEAR_ID] = ?</property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -7040,9 +7896,7 @@ where [refTable].[YEAR_ID] = ?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -7356,32 +8210,32 @@ where [refTable].[YEAR_ID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\Import data Dim_Gender">
+    design-time-name="Package\Import State to Dimension">
     <LayoutInfo>
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
-          Id="Package\Import data Dim_Gender\OLE DB Source"
-          TopLeft="276,17" />
+          Id="Package\Import State to Dimension\OLE DB Source"
+          TopLeft="329,39" />
         <NodeLayout
           Size="171,42"
-          Id="Package\Import data Dim_Gender\OLE DB Destination"
-          TopLeft="271,134" />
+          Id="Package\Import State to Dimension\OLE DB Destination"
+          TopLeft="326,202" />
         <EdgeLayout
-          Id="Package\Import data Dim_Gender.Paths[OLE DB Source Output]"
-          TopLeft="353.75,59">
+          Id="Package\Import State to Dimension.Paths[OLE DB Source Output]"
+          TopLeft="407.75,81">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,75"
+              EndConnector="0,121"
               Start="0,0"
-              End="0,67.5">
+              End="0,113.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,67.5" />
+                    End="0,113.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -7394,312 +8248,7 @@ where [refTable].[YEAR_ID] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Import data Dim_Gender\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Dim_Gender\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Import data Dim_Age_Group">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Import data Dim_Age_Group\OLE DB Source"
-          TopLeft="268,36" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Import data Dim_Age_Group\OLE DB Destination"
-          TopLeft="263,151" />
-        <EdgeLayout
-          Id="Package\Import data Dim_Age_Group.Paths[OLE DB Source Output]"
-          TopLeft="345.75,78">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,73"
-              Start="0,0"
-              End="0,65.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,65.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Dim_Age_Group\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Dim_Age_Group\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Import data Dim_Severe_Rate">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="151,42"
-          Id="Package\Import data Dim_Severe_Rate\Flat File Source"
-          TopLeft="284,36" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Import data Dim_Severe_Rate\OLE DB Destination"
-          TopLeft="267,197" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Import data Dim_Severe_Rate\Derived Column"
-          TopLeft="275,111" />
-        <EdgeLayout
-          Id="Package\Import data Dim_Severe_Rate.Paths[Flat File Source Output]"
-          TopLeft="355.75,78">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,33"
-              Start="0,0"
-              End="0,25.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,25.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Import data Dim_Severe_Rate.Paths[Derived Column Output]"
-          TopLeft="352.25,153">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,44"
-              Start="0,0"
-              End="0,36.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,36.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Dim_Severe_Rate\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Import data Fact_Casualty_Statistic">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Import data Fact_Casualty_Statistic\OLE DB Source"
-          TopLeft="323,27" />
-        <NodeLayout
-          Size="113,42"
-          Id="Package\Import data Fact_Casualty_Statistic\Lookup"
-          TopLeft="340,122" />
-        <EdgeLayout
-          Id="Package\Import data Fact_Casualty_Statistic.Paths[OLE DB Source Output]"
-          TopLeft="397.25,69">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,53"
-              Start="0,0"
-              End="0,45.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,45.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="122,42"
-          Id="Package\Import data Fact_Casualty_Statistic\Lookup 1"
-          TopLeft="331,218" />
-        <EdgeLayout
-          Id="Package\Import data Fact_Casualty_Statistic.Paths[Lookup Match Output]"
-          TopLeft="394.25,164">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,54"
-              Start="0,0"
-              End="0,46.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,46.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,17.4453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="122,42"
-          Id="Package\Import data Fact_Casualty_Statistic\Lookup 2"
-          TopLeft="330,305" />
-        <EdgeLayout
-          Id="Package\Import data Fact_Casualty_Statistic.Paths[Lookup Match Output1]"
-          TopLeft="391.5,260">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,45"
-              Start="0,0"
-              End="0,37.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,37.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,12.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Import data Fact_Casualty_Statistic\Derived Column"
-          TopLeft="314,390" />
-        <EdgeLayout
-          Id="Package\Import data Fact_Casualty_Statistic.Paths[Lookup Match Output2]"
-          TopLeft="391,347">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43"
-              Start="0,0"
-              End="0,35.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,11.9453125,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Import data Fact_Casualty_Statistic\OLE DB Destination"
-          TopLeft="313,483" />
-        <EdgeLayout
-          Id="Package\Import data Fact_Casualty_Statistic.Paths[Derived Column Output]"
-          TopLeft="394.75,432">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,51"
-              Start="0,0"
-              End="0,43.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Fact_Casualty_Statistic\OLE DB Source">
+    design-time-name="Package\Import State to Dimension\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -7712,135 +8261,7 @@ where [refTable].[YEAR_ID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Import data Fact_Casualty_Statistic\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_AGE_GROUP]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Fact_Casualty_Statistic\Lookup 1">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_GENDER]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Import data Dim_Outcome">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="150,42"
-          Id="Package\Import data Dim_Outcome\OLE DB Source"
-          TopLeft="354,32" />
-        <NodeLayout
-          Size="171,42"
-          Id="Package\Import data Dim_Outcome\OLE DB Destination"
-          TopLeft="341,162" />
-        <EdgeLayout
-          Id="Package\Import data Dim_Outcome.Paths[OLE DB Source Output]"
-          TopLeft="427.75,74">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,88"
-              Start="0,0"
-              End="0,80.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,80.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Dim_Outcome\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Dim_Outcome\OLE DB Destination">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Fact_Casualty_Statistic\Lookup 2">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DIM_OUTCOME]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Import data Fact_Casualty_Statistic\OLE DB Destination">
+    design-time-name="Package\Import State to Dimension\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

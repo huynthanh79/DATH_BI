@@ -37,7 +37,7 @@ GO
 
 CREATE TABLE [dbo].[Ongoing_Outbreaks_PHU](
 	[date] [date] NULL,
-	[phu_num] [bigint] NULL,
+	[phu_num] [int] NULL,
 	[outbreak_group] [nvarchar](100) NULL,
 	[number_ongoing_outbreaks] [int] NULL
 ) ON [PRIMARY]
@@ -46,7 +46,8 @@ GO
 CREATE TABLE [dbo].[PHU_Group](
 	[PHU_Group] [nvarchar](255) NULL,
 	[PHU_City] [nvarchar](255) NULL,
-	[PHU_region] [nvarchar](255) NULL
+	[PHU_region] [nvarchar](255) NULL,
+	[STATE] [nvarchar](255) NULL
 ) ON [PRIMARY]
 GO
 
@@ -60,7 +61,7 @@ GO
 
 CREATE TABLE [dbo].[Vaccines_By_Age_PHU](
 	[Date] [date] NULL,
-	[PHU ID] [bigint] NULL,
+	[PHU ID] [int] NULL,
 	[Agegroup] [nvarchar](255) NULL,
 	[At least one dose_cumulative] [int] NULL,
 	[Second_dose_cumulative] [int] NULL,
